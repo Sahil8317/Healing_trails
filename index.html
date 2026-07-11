@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Healing Trails — India's first sustainability-focused trekking company</title>
+  <meta name="description" content="The Healing Trails is India's first sustainability-focused trekking company, built by Rashmi Singh and Sahil Kesharwani." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============================= HERO ============================= -->
+  <header class="hero">
+    <!--
+      HERO PHOTO: drop a wide mountain image at  assets/hero.jpg
+      It appears automatically. Until then, a gradient sky is shown.
+    -->
+    <img class="hero__bg" src="assets/hero.jpg" alt="" onerror="this.remove()" />
+    <div class="hero__overlay"></div>
+
+    <div class="hero__content">
+      <p class="hero__eyebrow reveal">Est. in the Himalayas</p>
+      <h1 class="hero__title reveal">The Healing Trails</h1>
+      <p class="hero__tagline reveal">
+        India's first <span class="accent">sustainability&#8209;focused</span> trekking company
+      </p>
+      <p class="hero__sub reveal">Walk gently. Heal deeply. Leave only footprints.</p>
+    </div>
+
+    <a class="hero__scroll" href="#founders" aria-label="Scroll to founders">
+      <span class="hero__scroll-text">Meet the founders</span>
+      <span class="hero__scroll-arrow">&#8595;</span>
+    </a>
+  </header>
+
+  <!-- =========================== FOUNDERS =========================== -->
+  <section class="founders" id="founders">
+    <div class="founders__intro reveal">
+      <span class="founders__kicker">Our Story</span>
+      <h2 class="founders__heading">Built by two people who believe the mountains deserve better.</h2>
+      <p class="founders__lede">
+        The Healing Trails was founded by <strong>Rashmi Singh</strong> and
+        <strong>Sahil Kesharwani</strong> — a shared commitment to responsible,
+        low-impact adventure that gives back to the trails and the communities
+        that call them home.
+      </p>
+    </div>
+
+    <div class="founders__grid">
+
+      <!-- Founder 1 -->
+      <article class="founder reveal">
+        <div class="founder__photo">
+          <!--
+            PHOTO: drop  assets/rashmi.jpg  here and it appears automatically.
+            Until then, initials are shown.
+          -->
+          <img src="assets/rashmi.jpg" alt="Rashmi Singh" onerror="this.remove()" />
+          <span class="founder__initials" aria-hidden="true">RS</span>
+        </div>
+        <div class="founder__info">
+          <h3 class="founder__name">Rashmi Singh</h3>
+          <p class="founder__role">Co-Founder</p>
+          <p class="founder__bio">
+            Drawn to the quiet of high places, Rashmi shapes journeys that
+            restore the traveller and protect the trail.
+          </p>
+        </div>
+      </article>
+
+      <!-- Founder 2 -->
+      <article class="founder reveal">
+        <div class="founder__photo">
+          <!--
+            PHOTO: drop  assets/sahil.jpg  here and it appears automatically.
+            Until then, initials are shown.
+          -->
+          <img src="assets/sahil.jpg" alt="Sahil Kesharwani" onerror="this.remove()" />
+          <span class="founder__initials" aria-hidden="true">SK</span>
+        </div>
+        <div class="founder__info">
+          <h3 class="founder__name">Sahil Kesharwani</h3>
+          <p class="founder__role">Co-Founder</p>
+          <p class="founder__bio">
+            Sahil turns a love of the outdoors into treks that tread lightly and
+            leave every mountain better than we found it.
+          </p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============================ FOOTER ============================ -->
+  <footer class="site-footer">
+    <p class="site-footer__mark">The Healing Trails</p>
+    <p class="site-footer__note">Sustainability-focused trekking · India</p>
+  </footer>
+
+  <script>
+    // Gentle scroll-reveal. Degrades gracefully: if unsupported, everything
+    // is visible by default (see .reveal fallback in CSS).
+    (function () {
+      var els = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) {
+        els.forEach(function (el) { el.classList.add('is-visible'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      els.forEach(function (el) { io.observe(el); });
+    })();
+  </script>
+
+</body>
+</html>

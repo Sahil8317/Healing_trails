@@ -1,0 +1,299 @@
+/* ============================================================
+   The Healing Trails — landing page styles
+   Cinematic & immersive · responsive · no build step
+   ============================================================ */
+
+:root {
+  --ink:        #1c1a17;   /* near-black text            */
+  --cream:      #f6f2ea;   /* warm off-white background  */
+  --stone:      #6b655c;   /* muted body text            */
+  --forest:     #2f5d3f;   /* sustainability green accent*/
+  --forest-lt:  #4a8060;
+  --line:       #e2dccf;
+
+  --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --sans:  'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --maxw: 1120px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--cream);
+  font-weight: 300;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.accent { color: var(--forest-lt); }
+
+/* ---- scroll reveal ---------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* ============================= HERO ============================= */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 1.5rem 6rem;
+  overflow: hidden;
+  color: #fff;
+  /* Fallback "sky" gradient shown until assets/hero.jpg is added */
+  background:
+    radial-gradient(120% 90% at 50% 8%, #4a6b7a 0%, #2b4250 45%, #1a2730 100%);
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Dark gradient for text legibility over any photo */
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 18, 22, 0.35) 0%,
+    rgba(10, 18, 22, 0.15) 40%,
+    rgba(10, 18, 22, 0.65) 100%
+  );
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 820px;
+}
+
+.hero__eyebrow {
+  font-size: 0.8rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin: 0 0 1.4rem;
+  opacity: 0.9;
+}
+
+.hero__title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(3rem, 9vw, 6.5rem);
+  line-height: 1.02;
+  margin: 0;
+  letter-spacing: 0.01em;
+  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.35);
+}
+
+.hero__tagline {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(1.3rem, 3.4vw, 2.1rem);
+  margin: 1.2rem auto 0;
+  max-width: 30ch;
+  line-height: 1.35;
+}
+
+.hero__sub {
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  margin: 1.6rem 0 0;
+  opacity: 0.88;
+}
+
+.hero__scroll {
+  position: absolute;
+  bottom: 2.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+}
+.hero__scroll:hover { opacity: 1; }
+.hero__scroll-arrow {
+  font-size: 1.1rem;
+  animation: bob 2s ease-in-out infinite;
+}
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(6px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__scroll-arrow { animation: none; }
+}
+
+/* =========================== FOUNDERS =========================== */
+.founders {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: clamp(4.5rem, 12vw, 9rem) 1.5rem;
+}
+
+.founders__intro {
+  max-width: 760px;
+  margin: 0 auto clamp(3rem, 7vw, 5rem);
+  text-align: center;
+}
+
+.founders__kicker {
+  display: inline-block;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--forest);
+  font-weight: 500;
+  margin-bottom: 1.1rem;
+}
+
+.founders__heading {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(1.8rem, 4.5vw, 2.9rem);
+  line-height: 1.2;
+  margin: 0 0 1.3rem;
+}
+
+.founders__lede {
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
+  color: var(--stone);
+  margin: 0;
+}
+.founders__lede strong { color: var(--ink); font-weight: 500; }
+
+.founders__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+}
+
+/* ---- founder card ----------------------------------------- */
+.founder {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.2rem, 3vw, 2rem);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: clamp(1.5rem, 3.5vw, 2.4rem);
+  box-shadow: 0 18px 40px -28px rgba(28, 26, 23, 0.4);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.founder:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 26px 50px -28px rgba(28, 26, 23, 0.45);
+}
+
+.founder__photo {
+  position: relative;
+  flex: 0 0 auto;
+  width: clamp(88px, 22vw, 118px);
+  height: clamp(88px, 22vw, 118px);
+  border-radius: 50%;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  /* Placeholder shown until a real photo is added */
+  background: linear-gradient(135deg, var(--forest) 0%, var(--forest-lt) 100%);
+  box-shadow: inset 0 0 0 4px #fff, 0 6px 18px -8px rgba(47, 93, 63, 0.6);
+}
+.founder__photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+.founder__initials {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(1.7rem, 5vw, 2.3rem);
+  color: #fff;
+  letter-spacing: 0.05em;
+}
+
+.founder__name {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(1.35rem, 3vw, 1.7rem);
+  margin: 0;
+}
+.founder__role {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--forest);
+  font-weight: 500;
+  margin: 0.35rem 0 0.8rem;
+}
+.founder__bio {
+  font-size: 0.98rem;
+  color: var(--stone);
+  margin: 0;
+}
+
+/* ============================ FOOTER ============================ */
+.site-footer {
+  border-top: 1px solid var(--line);
+  text-align: center;
+  padding: 2.8rem 1.5rem;
+}
+.site-footer__mark {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin: 0;
+}
+.site-footer__note {
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--stone);
+  margin: 0.5rem 0 0;
+}
+
+/* ============================ MOBILE ============================ */
+@media (max-width: 720px) {
+  .founders__grid { grid-template-columns: 1fr; }
+  .founder { flex-direction: column; text-align: center; }
+}
