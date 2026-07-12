@@ -35,6 +35,23 @@ hero, and the founder's initials for each photo).
 - `hero.jpg` — wide/landscape, at least ~2000px across.
 - `rashmi.jpg` / `sahil.jpg` — square-ish; they're cropped to a circle.
 
+## Founder social links
+
+Each founder tile links to Instagram and YouTube. To set the destinations, open
+`index.html` and replace the placeholder values inside the `href="..."` of the
+four links (the blocks are marked with `▼▼▼ RASHMI'S LINKS ▼▼▼` and
+`▼▼▼ SAHIL'S LINKS ▼▼▼`):
+
+| Placeholder to replace              | Put the full profile URL, e.g.            |
+|-------------------------------------|-------------------------------------------|
+| `REPLACE_WITH_RASHMI_INSTAGRAM`     | `https://www.instagram.com/rashmi.handle` |
+| `REPLACE_WITH_RASHMI_YOUTUBE`       | `https://www.youtube.com/@rashmi.channel` |
+| `REPLACE_WITH_SAHIL_INSTAGRAM`      | `https://www.instagram.com/sahil.handle`  |
+| `REPLACE_WITH_SAHIL_YOUTUBE`        | `https://www.youtube.com/@sahil.channel`  |
+
+Replace the **entire** `href` value with the complete URL. Links open in a new
+tab.
+
 ## Run locally
 
 Just open `index.html` in a browser. Or serve it:

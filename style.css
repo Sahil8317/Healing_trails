@@ -143,13 +143,16 @@ body {
   gap: 0.5rem;
   color: #fff;
   text-decoration: none;
-  font-size: 0.72rem;
-  letter-spacing: 0.28em;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.26em;
   text-transform: uppercase;
-  opacity: 0.85;
-  transition: opacity 0.3s ease;
+  opacity: 1;
+  /* shadow keeps the text legible over bright parts of the photo */
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.75), 0 0 2px rgba(0, 0, 0, 0.6);
+  transition: color 0.3s ease, transform 0.3s ease;
 }
-.hero__scroll:hover { opacity: 1; }
+.hero__scroll:hover { transform: translateX(-50%) translateY(-2px); }
 .hero__scroll-arrow {
   font-size: 1.1rem;
   animation: bob 2s ease-in-out infinite;
@@ -209,12 +212,11 @@ body {
 /* ---- founder card ----------------------------------------- */
 .founder {
   display: flex;
-  align-items: center;
-  gap: clamp(1.2rem, 3vw, 2rem);
+  flex-direction: column;
   background: #fff;
   border: 1px solid var(--line);
   border-radius: 18px;
-  padding: clamp(1.5rem, 3.5vw, 2.4rem);
+  overflow: hidden;                 /* clip the photo to the card corners */
   box-shadow: 0 18px 40px -28px rgba(28, 26, 23, 0.4);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
@@ -223,18 +225,17 @@ body {
   box-shadow: 0 26px 50px -28px rgba(28, 26, 23, 0.45);
 }
 
+/* Large portrait panel. object-fit: cover keeps the photo's true
+   proportions (never stretched); object-position frames each person. */
 .founder__photo {
   position: relative;
-  flex: 0 0 auto;
-  width: clamp(88px, 22vw, 118px);
-  height: clamp(88px, 22vw, 118px);
-  border-radius: 50%;
+  width: 100%;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
   display: grid;
   place-items: center;
-  /* Placeholder shown until a real photo is added */
+  /* Placeholder shown only if the image is missing */
   background: linear-gradient(135deg, var(--forest) 0%, var(--forest-lt) 100%);
-  box-shadow: inset 0 0 0 4px #fff, 0 6px 18px -8px rgba(47, 93, 63, 0.6);
 }
 .founder__photo img {
   position: absolute;
@@ -244,18 +245,26 @@ body {
   object-fit: cover;
   z-index: 1;
 }
+/* Per-person framing so faces stay in view after the crop */
+.founder__photo--rashmi img { object-position: 50% 32%; }
+.founder__photo--sahil  img { object-position: 68% 30%; }
+
 .founder__initials {
   font-family: var(--serif);
   font-weight: 500;
-  font-size: clamp(1.7rem, 5vw, 2.3rem);
+  font-size: clamp(3rem, 9vw, 4.5rem);
   color: #fff;
   letter-spacing: 0.05em;
+}
+
+.founder__info {
+  padding: clamp(1.5rem, 3.5vw, 2.2rem);
 }
 
 .founder__name {
   font-family: var(--serif);
   font-weight: 600;
-  font-size: clamp(1.35rem, 3vw, 1.7rem);
+  font-size: clamp(1.5rem, 3vw, 1.9rem);
   margin: 0;
 }
 .founder__role {
@@ -264,12 +273,51 @@ body {
   text-transform: uppercase;
   color: var(--forest);
   font-weight: 500;
-  margin: 0.35rem 0 0.8rem;
+  margin: 0.35rem 0 0.9rem;
 }
 .founder__bio {
   font-size: 0.98rem;
   color: var(--stone);
-  margin: 0;
+  margin: 0 0 1.4rem;
+}
+
+/* ---- social links ----------------------------------------- */
+.founder__socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--line);
+}
+.founder__social {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.95rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  transition: color 0.25s ease, border-color 0.25s ease,
+              background 0.25s ease, transform 0.25s ease;
+}
+.founder__social:hover {
+  color: #fff;
+  background: var(--forest);
+  border-color: var(--forest);
+  transform: translateY(-2px);
+}
+.founder__social:focus-visible {
+  outline: 2px solid var(--forest);
+  outline-offset: 2px;
+}
+.founder__icon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
 }
 
 /* ============================ FOOTER ============================ */
@@ -295,5 +343,6 @@ body {
 /* ============================ MOBILE ============================ */
 @media (max-width: 720px) {
   .founders__grid { grid-template-columns: 1fr; }
-  .founder { flex-direction: column; text-align: center; }
+  /* Cap the portrait height on phones so it never dominates the screen */
+  .founder__photo { aspect-ratio: 1 / 1; }
 }
